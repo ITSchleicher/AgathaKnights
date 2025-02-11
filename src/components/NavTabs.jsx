@@ -50,14 +50,6 @@ function NavTabs() {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link
-                to="/Register"
-                className={currentPage === '/Register' ? 'nav-link active' : 'nav-link'}
-              >
-                Register
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
                 to="/Login"
                 className={currentPage === '/Login' ? 'nav-link active' : 'nav-link'}
               >

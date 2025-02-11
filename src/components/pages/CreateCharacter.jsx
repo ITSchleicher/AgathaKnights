@@ -1,9 +1,10 @@
 export default function CreateCharacter() {
     return (
         <div>
-            <h1>Enter Character Name</h1>
-            <input type="text" />
-            <h2>Choose Class</h2>
+            <h1>Forge your Destiny</h1>
+            <h2>Who are you?</h2>
+            <input type="text" placeholder="Enter your name"  />
+            <h2>What is your Profession?</h2>
             <ul className = "classes no-bullets">
                 <li><img src="public/paladin.png" alt="Paladin" /></li>
                 <li><img src="public/claric.png" alt="Claric" /></li>
@@ -18,6 +19,7 @@ export default function CreateCharacter() {
                 <li><img src="public/sorcerer.png" alt="Sorcerer" /></li>
                 <li><img src="public/warlock.png" alt="Warlock" /></li>
             </ul>
+            <h2>Where do your abilitys align?</h2>
             <ul>
                 <li>Strength</li>
                 <li>Intelligence</li>
