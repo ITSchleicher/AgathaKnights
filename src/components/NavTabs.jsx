@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 function NavTabs() {
   const currentPage = useLocation().pathname;
 
@@ -7,11 +8,13 @@ function NavTabs() {
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
       <div className="container-fluid">
         {/* Logo/Image */}
-        <Link to="/" className="navbar-brand">
-          <h3 className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>Home</h3>
-        </Link>
-
-        {/* Navbar Toggler (for small screens) */}
+        <Link
+                to="/"
+              >
+               <img src="public\mounted-knight.png" alt="dragon" width="50px"></img>
+              </Link>
+        
+        {/* Navbar Toggler (for small screens) with bootstrap */}
         <button
           className="navbar-toggler"
           type="button"
@@ -25,7 +28,25 @@ function NavTabs() {
         </button>
 
         {/* Nav Tabs */}
-        <div className="collapse navbar-collapse flex-column" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link
+                to="/"
+                className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/Character"
+                className={currentPage === '/Character' ? 'nav-link active' : 'nav-link'}
+              >
+                Character
+              </Link>
+            </li>
+          </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link
@@ -43,7 +64,6 @@ function NavTabs() {
                 Login
               </Link>
             </li>
-
           </ul>
         </div>
       </div>

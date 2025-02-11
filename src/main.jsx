@@ -9,6 +9,8 @@ import ErrorPage from './components/pages/Error';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import Character from './components/pages/Character';
+import CreateCharacter from './components/pages/CreateCharacter';
 
 
 // Define the accessible routes, and which components respond to which URL
@@ -30,6 +32,15 @@ const router = createBrowserRouter([
         path: '/Register',
         element: <Register />,
       },
+      {
+        path: '/Character',
+        element: <Character />,
+      },
+      {
+        path: '/CreateCharacter',
+        element: <CreateCharacter />,
+      },
+      
     ],
   },
 ]);
