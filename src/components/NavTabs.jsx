@@ -8,7 +8,7 @@ function NavTabs() {
       <div className="container-fluid">
         {/* Logo/Image */}
         <Link to="/" className="navbar-brand">
-          <h3 className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>Cory Melton</h3>
+          <h3 className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>Home</h3>
         </Link>
 
         {/* Navbar Toggler (for small screens) */}
