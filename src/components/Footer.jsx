@@ -1,8 +1,8 @@
 export default function Footer() {
 
   return (
-    <footer>
-      <p>
+    <footer className="footer">
+      <div className="footer-content">
         <a href="https://github.com/Raumus204" target="_blank">
         Cory
             <img src="mark-white.png" alt="GitHub Logo" width="30" height="30"></img>
@@ -11,7 +11,7 @@ export default function Footer() {
         Justin
             <img src="mark-white.png" alt="GitHub Logo" width="30" height="30"></img>
         </a>
-    </p>
+      </div>
     </footer>
   );
 }
