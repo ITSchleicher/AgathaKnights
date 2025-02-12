@@ -20,6 +20,12 @@ export const createUser = async (req, res) => {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
+        // Check if the user already exists
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
+
         const newUser = await User.create({ username, password }); 
 
         res.status(201).json({ message: 'User created successfully', user: newUser });
