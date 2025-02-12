@@ -57,11 +57,16 @@ function NavTabs() {
           </ul>
           <ul className="navbar-nav ms-auto">
             {auth.isAuthenticated ? (
-              <li className="nav-item">
-                <button className="nav-link" onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
+              <>
+                <li className="nav-item">
+                  <span className="nav-link">{auth.user.username}</span>
+                </li>
+                <li className="nav-item">
+                  <button className="nav-link" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
             ) : (
               <li className="nav-item">
                 <Link
