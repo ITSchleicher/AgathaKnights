@@ -1,19 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function NavTabs() {
   const currentPage = useLocation().pathname;
+  const { auth, setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuth({ isAuthenticated: false, user: null });
+    navigate('/login');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
       <div className="container-fluid">
         {/* Logo/Image */}
-        <Link
-                to="/"
-              >
-               <img src="client/public/mounted-knight.png" alt="mounted-knight" width="50px"></img>
-              </Link>
-        
+        <Link to="/">
+          <img src="client/public/mounted-knight.png" alt="mounted-knight" width="50px" />
+        </Link>
+
         {/* Navbar Toggler (for small screens) with bootstrap */}
         <button
           className="navbar-toggler"
@@ -48,14 +56,22 @@ function NavTabs() {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link
-                to="/Login"
-                className={currentPage === '/Login' ? 'nav-link active' : 'nav-link'}
-              >
-                Login
-              </Link>
-            </li>
+            {auth.isAuthenticated ? (
+              <li className="nav-item">
+                <button className="nav-link" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  to="/login"
+                  className={currentPage === '/login' ? 'nav-link active' : 'nav-link'}
+                >
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

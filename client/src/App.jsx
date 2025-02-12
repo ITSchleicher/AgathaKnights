@@ -1,19 +1,21 @@
 import { Outlet } from 'react-router-dom';
-import Nav from './components/NavTabs';
+import { AuthProvider } from './context/AuthContext';
+import NavTabs from './components/NavTabs';
 import Footer from './components/Footer';
-import './App.css'; // Ensure the CSS file is imported
+import './App.css';
 
 function App() {
   return (
-    <div className="app-container">
-      <Nav />
-      <main className="content">
-        <Outlet /> 
-      </main>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="app-container">
+        <NavTabs />
+        <main className="main-content">
+          <Outlet /> {/* This will render the child routes which is the /* for home */}
+        </main>
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }
 
 export default App;
-

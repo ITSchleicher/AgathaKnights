@@ -12,6 +12,10 @@
   --dark-green: #62b30b;
 }
 
+.main-content {
+  padding-bottom: 50px;
+  padding-top:80px;
+}
 /* Navbar CSS */
 .navbar {
   padding: 1rem 6rem;
@@ -75,7 +79,7 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+/* Classes CSS */
 .classes {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -86,16 +90,27 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  clip-path: polygon(50% -0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Create hexagon shape */
 }
 
 .classes img {
   width: 100px;
 }
 
+.classes li.selected {
+  background-color: var(--dark-green);
+}
+
 .no-bullets {
   list-style-type: none;
 }
-
+/* end of Classes css */
+.character img {
+  width: 100px;
+}
 .footer {
   position: fixed;
   bottom: 0;
