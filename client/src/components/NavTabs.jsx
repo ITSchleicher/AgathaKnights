@@ -11,7 +11,7 @@ function NavTabs() {
         <Link
                 to="/"
               >
-               <img src="public\mounted-knight.png" alt="dragon" width="50px"></img>
+               <img src="client/public/mounted-knight.png" alt="mounted-knight" width="50px"></img>
               </Link>
         
         {/* Navbar Toggler (for small screens) with bootstrap */}
