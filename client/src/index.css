@@ -128,13 +128,12 @@ button:focus-visible {
 }
 
 .home-container {
-  background-image: url('public/background.png');
+  background-image: url('client/public/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100vh;
-  height: 100vh; /* Full viewport height */
-  color: white; /* Adjust text color for better visibility */
+  width: 80vh;
+  height: 80vh; /* Full viewport height */
   display: flex;
   flex-direction: column;
   justify-content: center;
