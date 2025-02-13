@@ -114,13 +114,16 @@ export default function CreateCharacter() {
     return (
         
         <div className="create-character-container">
-                            <h1>Who are you?</h1>
+            <div className="name-container">
+                <h1>Who are you?</h1>
                 <label>
                     Name:
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
-            <h2>Forge your Destiny</h2>
+            </div>
+            
             <div className="sidebar">
+            <h2>Forge your Destiny</h2>
                 <ul>
                     <li className={currentTab === 'class' ? 'active' : ''} onClick={() => setCurrentTab('class')}>Class</li>
                     <li className={currentTab === 'abilities' ? 'active' : ''} onClick={() => setCurrentTab('abilities')}>Abilities</li>
