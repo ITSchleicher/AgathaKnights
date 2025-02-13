@@ -21,6 +21,8 @@ export default function Login() {
             if (response.ok) {
                 alert(data.message);
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('username', data.user.username);
+                localStorage.setItem('userId', data.user._id);
                 setAuth({ isAuthenticated: true, user: data.user });
                 navigate("/"); // Redirect to home page
             } else {

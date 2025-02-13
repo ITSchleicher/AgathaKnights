@@ -9,7 +9,7 @@ export default function Character() {
 
     useEffect(() => {
         const fetchCharacter = async () => {
-            if (!auth.user) {
+            if (!auth.isAuthenticated) {
                 setError(true);
                 return;
             }
@@ -30,7 +30,7 @@ export default function Character() {
         };
 
         fetchCharacter();
-    }, [auth.user]);
+    }, [auth.isAuthenticated, auth.user]);
 
     if (error || !character) {
         return (

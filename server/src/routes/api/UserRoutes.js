@@ -3,6 +3,9 @@ import {
     getUsers,
     createUser,
     loginUser,
+    getUserById,
+    updateUser,
+    deleteUser
 } from '../../controllers/UserController.js';
 
 const router = Router();
@@ -11,7 +14,7 @@ const router = Router();
 router.route('/').get(getUsers).post(createUser);
 
 // /api/users/:id
-router.route('/:id').get().put().delete();
+router.route('/:id').get(getUserById).put(updateUser).delete(deleteUser);
 
 // /api/users/Login
 router.post('/login', loginUser);

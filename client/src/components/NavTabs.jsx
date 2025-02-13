@@ -5,12 +5,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function NavTabs() {
   const currentPage = useLocation().pathname;
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setAuth({ isAuthenticated: false, user: null });
+    logout();
     navigate('/login');
   };
 
