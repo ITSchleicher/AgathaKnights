@@ -79,7 +79,7 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-/* Classes CSS */
+/* Classes CSS START */
 .classes {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -107,7 +107,23 @@ button:focus-visible {
 .no-bullets {
   list-style-type: none;
 }
-/* end of Classes css */
+/* Classes CSS END */
+
+
+
+
+
+
+.stats-buttons.increment {
+  background-color: rgb(28, 133, 54); /* Green background for + button */
+  color: white; /* White text color */
+}
+
+.stats-buttons.decrement {
+  background-color: rgb(126, 26, 26); /* Red background for - button */
+  color: white; /* White text color */
+}
+
 .character img {
   width: 100px;
 }
@@ -155,7 +171,7 @@ button:focus-visible {
   align-items: center;
   text-align: center;
   padding: 20px;
-  margin: 0; /* Ensure no margin around the container */
+  margin: 0; 
   left: 0;
 }
 

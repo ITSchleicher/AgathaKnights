@@ -1,0 +1,129 @@
+.create-character-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid var(--light-green);
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.sidebar ul li.active {
+    background-color: var(--dark-green);
+    font-weight: bold;
+}
+
+.content {
+    flex: 1;
+}
+
+.classes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.classes li {
+    cursor: pointer;
+}
+
+.stats-buttons {
+    padding: 0.2em;
+    margin: 0 5px;
+    font-size: 0.8em;
+    border-radius: 4px;
+}
+
+.stats-buttons {
+    padding: 0.2em; 
+    margin: 0 5px; 
+    font-size: 0.8em; 
+    border-radius: 4px; 
+    width: 2em; 
+    height: 2em; 
+  }
+  
+
+.clear-button {
+    background-color: transparent;
+    color: lightblue;
+    border: 2px solid lightblue;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .clear-button:hover {
+    background-color: rgba(173, 216, 230, 0.2); 
+    border-color: lightblue;
+  }
+
+  .save-button {
+    background-color: transparent;
+    color: red;
+    border: 2px solid red;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .save-button:hover {
+    background-color: rgba(128, 0, 0, 0.2);
+    border-color: red;
+  }
+
+/* Additional styles for character page */
+.character-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.character-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.character-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.character-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.character-stats p {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
