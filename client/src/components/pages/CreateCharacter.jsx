@@ -7,7 +7,10 @@ export default function CreateCharacter() {
     const [characterClass, setCharacterClass] = useState('');
     const [classImage, setClassImage] = useState('');
     const [selectedClass, setSelectedClass] = useState(''); // Add state for selected class
-    const [stats, setStats] = useState({ strength: 0, dexterity: 0, intelligence: 0, constitution: 0, wisdom: 0, charisma: 0 });
+    const [stats, setStats] = useState({ strength: 8, dexterity: 8, intelligence: 8, constitution: 8, wisdom: 8, charisma: 8 });
+    const [remainingPoints, setRemainingPoints] = useState(27); // Initialize remaining points to 27
+    const [selectedPlusTwo, setSelectedPlusTwo] = useState(''); // Track the selected +2 stat
+    const [selectedPlusOne, setSelectedPlusOne] = useState(''); // Track the selected +1 stat
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate(); // Initialize useNavigate
 
@@ -39,6 +42,69 @@ export default function CreateCharacter() {
         }
     };
 
+    const incrementStat = (stat, increment) => {
+        setStats((prevStats) => {
+            const currentStatValue = prevStats[stat];
+            if (currentStatValue + increment > 15) return prevStats; // Ensure stat does not exceed 15
+            const pointsUsed = (currentStatValue + increment > 13) ? 2 * increment : increment;
+            if (remainingPoints - pointsUsed >= 0) {
+                setRemainingPoints(remainingPoints - pointsUsed);
+                return {
+                    ...prevStats,
+                    [stat]: currentStatValue + increment,
+                };
+            }
+            return prevStats;
+        });
+    };
+
+    const decrementStat = (stat) => {
+        setStats((prevStats) => {
+            const currentStatValue = prevStats[stat];
+            if (currentStatValue <= 8) return prevStats; // Ensure stat does not go below 8
+            const newStatValue = currentStatValue - 1;
+            const pointsUsed = currentStatValue > 13 ? 2 : 1;
+            setRemainingPoints(remainingPoints + pointsUsed);
+            return {
+                ...prevStats,
+                [stat]: newStatValue,
+            };
+        });
+    };
+
+    const handleCheckboxChange = (stat, increment) => {
+        if (increment === 2) {
+            if (selectedPlusTwo === stat) {
+                setSelectedPlusTwo('');
+            } else {
+                setSelectedPlusTwo(stat);
+                if (selectedPlusOne === stat) {
+                    setSelectedPlusOne('');
+                }
+            }
+        } else if (increment === 1) {
+            if (selectedPlusOne === stat) {
+                setSelectedPlusOne('');
+            } else {
+                setSelectedPlusOne(stat);
+                if (selectedPlusTwo === stat) {
+                    setSelectedPlusTwo('');
+                }
+            }
+        }
+    };
+
+    const calculateBonus = (stat) => {
+        return Math.floor((stat - 10) / 2);
+    };
+
+    const resetStats = () => {
+        setStats({ strength: 8, dexterity: 8, intelligence: 8, constitution: 8, wisdom: 8, charisma: 8 });
+        setRemainingPoints(27);
+        setSelectedPlusTwo('');
+        setSelectedPlusOne('');
+    };
+
     return (
         <div>
             <h1>Forge your Destiny</h1>
@@ -64,35 +130,47 @@ export default function CreateCharacter() {
                     <li onClick={() => handleClassSelection('Warlock', 'client/public/warlock.png')} className={selectedClass === 'Warlock' ? 'selected' : ''}><img src="client/public/warlock.png" alt="Warlock" /></li>
                 </ul>
                 <h2>Where do your abilities align?</h2>
-                <label>
-                    Strength:
-                    <input type="number" value={stats.strength} onChange={(e) => setStats({ ...stats, strength: e.target.value })} />
-                </label>
+                <p>Remaining Points: {remainingPoints}</p>
+                <div>
+                    <p>Strength: {stats.strength} ({calculateBonus(stats.strength)}) 
+                        <button type="button" onClick={() => incrementStat('strength', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('strength')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'strength'} onChange={() => handleCheckboxChange('strength', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'strength'} onChange={() => handleCheckboxChange('strength', 1)} /> +1
+                    </p>
+                    <p>Dexterity: {stats.dexterity} ({calculateBonus(stats.dexterity)}) 
+                        <button type="button" onClick={() => incrementStat('dexterity', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('dexterity')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'dexterity'} onChange={() => handleCheckboxChange('dexterity', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'dexterity'} onChange={() => handleCheckboxChange('dexterity', 1)} /> +1
+                    </p>
+                    <p>Constitution: {stats.constitution} ({calculateBonus(stats.constitution)}) 
+                        <button type="button" onClick={() => incrementStat('constitution', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('constitution')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'constitution'} onChange={() => handleCheckboxChange('constitution', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'constitution'} onChange={() => handleCheckboxChange('constitution', 1)} /> +1
+                    </p>
+                    <p>Intelligence: {stats.intelligence} ({calculateBonus(stats.intelligence)}) 
+                        <button type="button" onClick={() => incrementStat('intelligence', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('intelligence')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'intelligence'} onChange={() => handleCheckboxChange('intelligence', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'intelligence'} onChange={() => handleCheckboxChange('intelligence', 1)} /> +1
+                    </p>
+                    <p>Wisdom: {stats.wisdom} ({calculateBonus(stats.wisdom)}) 
+                        <button type="button" onClick={() => incrementStat('wisdom', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('wisdom')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'wisdom'} onChange={() => handleCheckboxChange('wisdom', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'wisdom'} onChange={() => handleCheckboxChange('wisdom', 1)} /> +1
+                    </p>
+                    <p>Charisma: {stats.charisma} ({calculateBonus(stats.charisma)}) 
+                        <button type="button" onClick={() => incrementStat('charisma', 1)}>+</button> 
+                        <button type="button" onClick={() => decrementStat('charisma')}>-</button>
+                        <input type="checkbox" checked={selectedPlusTwo === 'charisma'} onChange={() => handleCheckboxChange('charisma', 2)} /> +2
+                        <input type="checkbox" checked={selectedPlusOne === 'charisma'} onChange={() => handleCheckboxChange('charisma', 1)} /> +1
+                    </p>
+                </div>
                 <br />
-                <label>
-                    Dexterity:
-                    <input type="number" value={stats.dexterity} onChange={(e) => setStats({ ...stats, dexterity: e.target.value })} />
-                </label>
-                <br />
-                <label>
-                    Constitution:
-                    <input type="number" value={stats.constitution} onChange={(e) => setStats({ ...stats, constitution: e.target.value })} />
-                </label>
-                <br />
-                <label>
-                    Intelligence:
-                    <input type="number" value={stats.intelligence} onChange={(e) => setStats({ ...stats, intelligence: e.target.value })} />
-                </label>
-                <br />
-                <label>
-                    Wisdom:
-                    <input type="number" value={stats.wisdom} onChange={(e) => setStats({ ...stats, wisdom: e.target.value })} />
-                </label>
-                <br />
-                <label>
-                    Charisma:
-                    <input type="number" value={stats.charisma} onChange={(e) => setStats({ ...stats, charisma: e.target.value })} />
-                </label>
+                <button type="button" onClick={resetStats}>Clear</button>
                 <br />
                 <button type="submit">Save Character</button>
             </form>
