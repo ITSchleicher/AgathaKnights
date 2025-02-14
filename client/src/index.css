@@ -79,50 +79,8 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-/* Classes CSS START */
-.classes {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-}
-
-.classes li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: inline-block;
-  margin: 10px;
-  cursor: pointer;
-  clip-path: polygon(50% -0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Create hexagon shape */
-}
-
-.classes img {
-  width: 100px;
-}
-
-.classes li.selected {
-  background-color: var(--dark-green);
-}
-
-.no-bullets {
-  list-style-type: none;
-}
-/* Classes CSS END */
 
 
-
-
-
-
-.stats-buttons.increment {
-  background-color: rgb(28, 133, 54); /* Green background for + button */
-  color: white; /* White text color */
-}
-
-.stats-buttons.decrement {
-  background-color: rgb(126, 26, 26); /* Red background for - button */
-  color: white; /* White text color */
-}
 
 .character img {
   width: 100px;

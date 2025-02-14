@@ -10,6 +10,7 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Character from './components/pages/Character';
 import CreateCharacter from './components/pages/CreateCharacter';
+import War from './components/pages/War';
 
 // Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
@@ -23,21 +24,25 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'login', // Use relative path
+        path: 'login',
         element: <Login />,
       },
       {
-        path: 'register', // Use relative path
+        path: 'register',
         element: <Register />,
       },
       {
-        path: 'character', // Use relative path
+        path: 'character',
         element: <Character />,
       },
       {
-        path: 'createcharacter', // Use relative path
+        path: 'createcharacter', 
         element: <CreateCharacter />,
       },
+      {
+        path: 'war',
+        element: <War />,
+      }
     ],
   },
 ]);

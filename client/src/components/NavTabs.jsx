@@ -53,6 +53,14 @@ function NavTabs() {
                 Character
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                to="/War"
+                className={currentPage === '/War' ? 'nav-link active' : 'nav-link'}
+              >
+                Fight For Agatha!
+              </Link>
+            </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             {auth.isAuthenticated ? (

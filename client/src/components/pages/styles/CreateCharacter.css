@@ -3,11 +3,15 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin: 0 230px 0 230px;
 }
 
 .name-container {
+    position: fixed;
+    top: 110px;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0 230px 0 230px;
+    white-space: nowrap;
 }
 
 .header {
@@ -48,6 +52,7 @@
     flex: 1;
     width: 100%;
     padding: 20px;
+    margin: 100px 0 0 0;
 }
 
 .classes {
@@ -55,18 +60,38 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    margin: 20px 0px 20px 120px;
+    min-width: 600px;
 }
 
 .classes li {
     display: flex;
     flex-wrap: wrap;
-
     margin: 10px;
     cursor: pointer;
     clip-path: polygon(50% -0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Create hexagon shape */
   }
 
+  .classes li img {
+    width: 100px;
+  }
+
+  .classes li.selected::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-green);
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Place behind the image */
+    box-shadow: 0 0 10px 5px rgba(0, 128, 0, 0.5); /* Green glow effect */
+}
+
 .stats-buttons {
+    width: 30px;
+    height: 30px;
     padding: 0.2em;
     margin: 0 5px;
     font-size: 0.8em;
@@ -110,6 +135,12 @@
     border-color: red;
   }
 
+  .no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
 /* Additional styles for character page */
 .character-container {
     display: flex;
@@ -145,11 +176,20 @@
 
 
 .stats-buttons.increment {
-    background-color: rgb(28, 133, 54); /* Green background for + button */
-    color: white; /* White text color */
+    background-color: rgb(28, 133, 54); 
+    color: white; 
   }
   
   .stats-buttons.decrement {
-    background-color: rgb(126, 26, 26); /* Red background for - button */
-    color: white; /* White text color */
+    background-color: rgb(126, 26, 26); 
+    color: white;
   }
+
+/* Add this CSS to style the checkboxes */
+.stats-buttons + input[type="checkbox"] {
+    margin-left: 10px; /* Add margin to the left of the checkbox */
+}
+
+input[type="checkbox"] + input[type="checkbox"] {
+    margin-left: 10px; /* Add margin to the left of the second checkbox */
+}

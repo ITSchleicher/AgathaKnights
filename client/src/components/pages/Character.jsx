@@ -74,6 +74,7 @@ export default function Character() {
                 <p>HP: {calculateHP(character.stats.constitution)}</p>
                 <p>Armor Class: {calculateArmor(character.stats.dexterity)} </p>
                 <p>Initiative: {calculateInitiative(character.stats.dexterity)} </p>
+                
             </div>
             <Link to="/CreateCharacter">Create Character</Link>
         </div>
