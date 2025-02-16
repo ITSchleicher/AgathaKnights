@@ -4,6 +4,7 @@ const characterSchema = new mongoose.Schema({
     name: { type: String, required: true },
     class: { type: String, required: true },
     classImage: { type: String, required: true },
+    classCharacter: { type: String, required: true },
     stats: {
         strength: { type: Number, required: true },
         dexterity: { type: Number, required: true },

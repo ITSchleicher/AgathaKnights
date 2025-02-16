@@ -7,6 +7,7 @@ export default function CreateCharacter() {
     const [name, setName] = useState('');
     const [characterClass, setCharacterClass] = useState('');
     const [classImage, setClassImage] = useState('');
+    const [classCharacter, setClassCharacter] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
     const [stats, setStats] = useState({ strength: 8, dexterity: 8, intelligence: 8, constitution: 8, wisdom: 8, charisma: 8 });
     const [remainingPoints, setRemainingPoints] = useState(27);
@@ -17,11 +18,168 @@ export default function CreateCharacter() {
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // Paladin,  (CHA): 9 DC / +1 Spell Attack, armor x4, simple weapons x12, martial weapons x19, hp 9, armor class 9
+    // Cleric, (WIS): 9 DC / +1 Spell Attack, armor x3, simple weapons x12, martial weapons x2, hp 7, armor class 9
+    // Fighter, armor x4, simple weapons x12, martial weapons x19 hp 9, armor class 9
+    // Barbarian, (CHA): 9 DC / +1 Spell Attack, armor x3, simple weapons x12, martial weapons x19, hp 11, armor class 8
+    // Rogue, armor x1, simple weapons x12, martial weapons x4, hp 7, armor class 9
+    // Ranger,  (WIS): 9 DC / +1 Spell Attack, armor x3, simple weapons x12, martial weapons x19,  hp 9, armor class 9
+    // Druid, (WIS): 9 DC / +1 Spell Attack, armor x3, simple weapons x7, martial weapons x1, hp 7, armor class 9
+    // Bard, (CHA): 9 DC / +1 Spell Attack, armor x1, simple weapons x12, martial weapons x4 hp 7, armor class 9
+    // Monk,  (WIS): 9 DC / +1 Spell Attack, armor x0, simple weapons x12, martial weapons x1 hp 7, armor class 8
+    // Wizard, INT 9 DC / +1 Spell Attack, simple weapon x3, martial weapon x0, hp 5, armor class 9
+    // Sorcerer, (CHA): 9 DC / +1 Spell Attack, armor x0, simple weapons x3, martial weapons x0   hp 5, armor class 9
+    // Warlock,(CHA): 9 DC / +1 Spell Attack, armor x1, simple weapons x12, martial weapons x0 hp 7, armor class 9
+     
+    const classBaseHP = {
+        Paladin: 9,
+        Cleric: 7,
+        Fighter: 9,
+        Barbarian: 11,
+        Rogue: 7,
+        Ranger: 9,
+        Druid: 7,
+        Bard: 7,
+        Monk: 7,
+        Wizard: 5,
+        Sorcerer: 5,
+        Warlock: 7,
+    };
+
+    const classArmor = {
+        Paladin: 4,
+        Cleric: 3,
+        Fighter: 4,
+        Barbarian: 3,
+        Rogue: 1,
+        Ranger: 3,
+        Druid: 3,
+        Bard: 1,
+        Monk: 0,
+        Wizard: 0,
+        Sorcerer: 0,
+        Warlock: 1,
+    }
+
+    const classBaseST = {
+        Paladin: {
+            strength: 2,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 2,
+            wisdom: 0,
+            charisma: 0
+        },
+        Cleric: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 2,
+            charisma: 2
+        },
+        Fighter: {
+            strength: 2,
+            dexterity: 0,
+            constitution: 2,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0
+        },
+        Barbarian: {
+            strength: 2,
+            dexterity: 0,
+            constitution: 2,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0
+        },
+        Rogue: {
+            strength: 0,
+            dexterity: 2,
+            constitution: 0,
+            intelligence: 2,
+            wisdom: 0,
+            charisma: 0
+        },
+        Ranger: {
+            strength: 2,
+            dexterity: 2,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0
+        },
+        Druid: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 2,
+            wisdom: 2,
+            charisma: 0
+        },
+        Bard: {
+            strength: 0,
+            dexterity: 2,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 2
+        },
+        Monk: {
+            strength: 2,
+            dexterity: 2,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0
+        },
+        Wizard: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 2,
+            wisdom: 2,
+            charisma: 0
+        },
+        Sorcerer: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 2,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 2
+        },
+        Warlock: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 2,
+            charisma: 2
+        },
+    };
+
     const handleClassSelection = (characterClass, classImage) => {
+        const classCharacterMap = {
+            Paladin: 'client/public/Paladin-img.png',
+            Cleric: 'client/public/Cleric-img.png',
+            Fighter: 'client/public/Fighter-img.png',
+            Barbarian: 'client/public/Barbarian-img.png',
+            Rogue: 'client/public/Rogue-img.png',
+            Ranger: 'client/public/Ranger-img.png',
+            Druid: 'client/public/Druid-img.png',
+            Bard: 'client/public/Bard-img.png',
+            Monk: 'client/public/Cleric-img.png',
+            Wizard: 'client/public/Wizard-img.png',
+            Sorcerer: 'client/public/Sorcerer-img.png',
+            Warlock: 'client/public/Warlock-img.png',
+        };
         setCharacterClass(characterClass);
         setClassImage(classImage);
         setSelectedClass(characterClass);
         updateSpells(characterClass);
+        setClassCharacter(classCharacterMap[characterClass]);
     };
 
     const updateSpells = (characterClass) => {
@@ -48,7 +206,7 @@ export default function CreateCharacter() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/characters/save`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: auth.user._id, name, class: characterClass, classImage, stats }),
+                body: JSON.stringify({ userId: auth.user._id, name, class: characterClass, classImage, stats, classCharacter }),
             });
 
             const data = await response.json();
@@ -144,9 +302,20 @@ export default function CreateCharacter() {
         return Math.floor((stat - 10) / 2);
     };
 
-    const calculateHP = (constitution) => {
-        return 7 + Math.floor((constitution - 8) / 2);
+    const calculateSavingThrow = (stat) => {
+        const baseST = classBaseST[characterClass]?.[stat] || 0;
+        return baseST + calculateBonus(stats[stat]);
     };
+
+    const calculateHP = (constitution) => {
+        const baseHP = classBaseHP[characterClass];
+        return baseHP + Math.floor((constitution - 8) /2);
+    };
+    
+    const calculateArmor = (dexterity) => {
+        const baseArmor = classArmor[characterClass];
+        return baseArmor + Math.floor((dexterity - 8) / 2);
+    }
 
     const resetStats = () => {
         setStats({ strength: 8, dexterity: 8, intelligence: 8, constitution: 8, wisdom: 8, charisma: 8 });
@@ -165,7 +334,21 @@ export default function CreateCharacter() {
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
             </div>
-            
+            <div className="character-sheet">
+                <p >Hit Points: {calculateHP(stats.constitution) || 0}</p>
+                <p>Armor: {calculateArmor(stats.dexterity) || 0}</p>
+                <p>Initiative: {calculateBonus(stats.dexterity)}</p>
+                <br />
+                <p>Saving Throw Bonus</p>
+                <p>Strength: {calculateSavingThrow('strength')}</p>
+                <p>Dexterity: {calculateSavingThrow('dexterity')}</p>
+                <p>Constitution: {calculateSavingThrow('constitution')}</p>
+                <p>Intelligence: {calculateSavingThrow('intelligence')}</p>
+                <p>Wisdom: {calculateSavingThrow('wisdom')}</p>
+                <p>Charisma: {calculateSavingThrow('charisma')}</p>
+                
+                
+            </div>
             <div className="sidebar">
             <h2>Forge your Destiny</h2>
                 <ul>
@@ -199,7 +382,6 @@ export default function CreateCharacter() {
                     <div>
                         <h2>Where do your abilities align?</h2>
                         <p>Ability Points: {remainingPoints}</p>
-                        <p>Hit Points: {calculateHP(stats.constitution)}</p>
                         <div>
                             <p>Strength
                                 <button type="button" className="stats-buttons decrement" onClick={() => decreaseStat('strength')}>-</button>

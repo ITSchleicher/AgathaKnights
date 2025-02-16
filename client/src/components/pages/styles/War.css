@@ -1,0 +1,49 @@
+.war-container {
+    position: relative;
+    padding: 20px;
+}
+
+.character-info-container {
+    position: fixed;
+    top: 110px;
+    left: 10px;
+    width: 200px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.character-info-container h2 {
+    margin: 0 0 10px 0;
+}
+
+.character-info-container p {
+    margin: 5px 0;
+}
+
+.battle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.character-image, .adversary-image {
+    width: 130px;
+    height: 130px;
+}
+
+.enemy-info-container {
+    position: fixed;
+    top: 110px;
+    right: 10px;
+    margin-bottom: 20px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
